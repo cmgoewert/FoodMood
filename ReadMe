@@ -1,0 +1,22 @@
+
+Current Use Case: Add Moods
+Users are able to login with username "TestUser0" and password "test". From there the user can navigate to
+the Mood Menu tab where they will have the option to enter a new mood name into a text box which is saved to
+the data repository. Saving function can be observed in the terminal output on entry and entry of subsequent moods.
+
+Design Pattern Navigation tabbed Panel has Been added by Tim
+Command design pattern also added with a reset command also added by Tim
+
+
+The Singleton pattern has been applied to the AppData (a collection of the serialized data) class. 
+A static, private, final AppData object (INSTANCE) is initialized as a member.  A public method, getInstance(),
+is called whenever another class needs to access the serialized data - Jared
+The Sort-By user interface pattern will be implemented with our View History use case, 
+as our first use case does not involve tabular elements - Jared
+
+The interpreter pattern will be implemented gradually as we start to classify the foods to make them into associations
+with moods.  This is a part of a later use case and will be implemented as the associations are. - Chandler
+
+The GUI designs that are associated with input, especially food, have begun to be implemented with the addition of
+a dropbox to choose previously inputted foods.  As our design is fleshed out, this will be continued to be expanded
+upon.  - Chandler
