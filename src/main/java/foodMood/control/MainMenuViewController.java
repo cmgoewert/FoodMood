@@ -7,10 +7,13 @@ package foodMood.control;
 
 import foodMood.model.AppData;
 import foodMood.model.Mood;
+import foodMood.model.Food;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class MainMenuViewController implements Initializable {
@@ -18,6 +21,9 @@ public class MainMenuViewController implements Initializable {
     AppController app;
     AppData data = AppData.getInstance();
     @FXML private TextField moodField;
+    @FXML private TextField foodField;
+    @FXML private TableView historyTable;
+    @FXML private TableColumn foodColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -35,6 +41,24 @@ public class MainMenuViewController implements Initializable {
             System.out.println(m.toString());
         }
     }
+
+    @FXML
+    protected void foodEnterButtonAction() {
+        if (!foodField.getText().isEmpty()) {
+            Food newFood = new Food(1, foodField.getText(),5);
+                data.getFoodList().addFood(newFood);
+                app.getSer().write();
+                foodField.clear();
+
+            }
+            for (Food f : data.getFoodList().getListOfFood()){
+
+                System.out.println(f.toString());
+            }
+        }
+
+
+
     
     void setUp(AppController app) {
        this.app = app;

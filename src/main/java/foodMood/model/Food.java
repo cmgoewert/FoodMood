@@ -68,6 +68,11 @@ public class Food {
     public void setCalories(int calories) {
         this.calories = calories;
     }
+
+    @Override
+    public String toString() {
+        return "Food Number: " + " " + this.ID + " " +  "Food Name: " + " " + this.foodName + " " + "Calories" + " " + this.calories;
+    }
     
             
 }
