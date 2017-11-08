@@ -18,21 +18,21 @@ import javafx.stage.Stage;
  * @author Jared
  */
 public class AppController {
-    
-    Stage stage; 
+
+    Stage stage;
     FXMLLoader loader;
     Parent root;
     private Serialize ser;
     LoginViewController loginControl;
     SignUpViewController signUpControl;
     MainMenuViewController mainControl;
-    
+
     public AppController(Stage stage) throws IOException {
         ser = new Serialize();
         this.stage = stage;
         showLogin();
     }
-    
+
     public final void showLogin() {
         try {
             loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/LoginView.fxml"));
@@ -48,7 +48,7 @@ public class AppController {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public final void showSignUp() {
         try {
             loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/SignUpView.fxml"));
@@ -68,22 +68,29 @@ public class AppController {
 //    public final void hideSignUp(){
 //
 //    }
-    
+
     public final void showMainMenu() {
         try {
             loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/MainMenuView.fxml"));
-            root = loader.load();
-            mainControl = (MainMenuViewController) loader.getController();
-            mainControl.setUp(this);
+
+
+            stage.show();
+           root = loader.load();
+           mainControl = (MainMenuViewController) loader.getController();
+           mainControl.setUp(this);
             Scene scene = new Scene(root);
+            //String css = AppController.class.getResource("foodMenu.css").toExternalForm();
+           // scene.getStylesheets().add(css);
             stage.setTitle("Main Menu");
             stage.setScene(scene);
+
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 
     public Serialize getSer() {
         return ser;

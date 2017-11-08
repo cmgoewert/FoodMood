@@ -20,18 +20,21 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="moodField" layoutX="185.0" layoutY="64.0" />
-                        <Button layoutX="239.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleEnterButtonAction" text="Enter" />
+                        <Button layoutX="243.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleEnterButtonAction" text="Enter" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
           <Tab text="Food Menu">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="519.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="519.0" stylesheets="">
                      <children>
-                        <Button layoutX="250.0" layoutY="101.0" mnemonicParsing="false" onAction="#foodEnterButtonAction" text="Enter" />
-                        <ChoiceBox layoutX="192.0" layoutY="54.0" prefWidth="150.0" />
-                        <TextField fx:id="foodField" layoutX="193.0" layoutY="14.0" />
+                        <Button layoutX="251.0" layoutY="181.0" mnemonicParsing="false" onAction="#foodEnterButtonAction" text="Enter" />
+                        <ChoiceBox layoutX="202.0" layoutY="136.0" prefWidth="150.0" />
+                        <TextField fx:id="foodField" layoutX="193.0" layoutY="28.0" />
+                        <Label fx:id="foodTxt" layoutX="140.0" layoutY="33.0" text="Food" />
+                        <TextField fx:id="caloriesField" layoutX="193.0" layoutY="69.0" prefHeight="27.0" prefWidth="89.0" />
+                        <Label fx:id="caloriesTxt" layoutX="131.0" layoutY="74.0" text="Calories" />
                      </children>
                   </AnchorPane>
             </content>
