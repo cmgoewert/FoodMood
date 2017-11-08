@@ -63,8 +63,7 @@ public class MainMenuViewController implements Initializable {
             Food newFood = new Food(1, foodField.getText(), cal);
             data.getFoodList().addFood(newFood);
             app.getSer().write();
-            foods = FXCollections.observableArrayList(data.getFoodList().getListOfFood());
-            historyTable.setItems(foods);
+            foods.add(newFood);
             historyTable.refresh();
             foodField.clear();
             caloriesField.clear();
