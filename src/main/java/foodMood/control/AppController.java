@@ -68,29 +68,25 @@ public class AppController {
 //    public final void hideSignUp(){
 //
 //    }
-
     public final void showMainMenu() {
         try {
             loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/MainMenuView.fxml"));
-
-
             stage.show();
-           root = loader.load();
-           mainControl = (MainMenuViewController) loader.getController();
-           mainControl.setUp(this);
+            root = loader.load();
+            mainControl = (MainMenuViewController) loader.getController();
+            mainControl.setUp(this);
             Scene scene = new Scene(root);
             //String css = AppController.class.getResource("foodMenu.css").toExternalForm();
-           // scene.getStylesheets().add(css);
+            // scene.getStylesheets().add(css);
             stage.setTitle("Main Menu");
             stage.setScene(scene);
 
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-           Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     public Serialize getSer() {
         return ser;

@@ -18,11 +18,15 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MainMenuViewController implements Initializable {
 
     AppController app;
     AppData data = AppData.getInstance();
+    ObservableList<Food> foods;
     @FXML
     private TextField moodField;
     @FXML
@@ -36,7 +40,8 @@ public class MainMenuViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        foodColumn.setCellValueFactory(new PropertyValueFactory("foodName"));
+        foods = FXCollections.observableArrayList(data.getFoodList().getListOfFood());
     }
 
     @FXML
@@ -53,16 +58,16 @@ public class MainMenuViewController implements Initializable {
 
     @FXML
     protected void foodEnterButtonAction() {
-        //!foodField.getText().isEmpty() && !caloriesField.getText().isEmpty()
         if (validateFields()) {
             int cal = Integer.parseInt(caloriesField.getText());
             Food newFood = new Food(1, foodField.getText(), cal);
             data.getFoodList().addFood(newFood);
             app.getSer().write();
+            foods = FXCollections.observableArrayList(data.getFoodList().getListOfFood());
+            historyTable.setItems(foods);
+            historyTable.refresh();
             foodField.clear();
             caloriesField.clear();
-
-
             for (Food f : data.getFoodList().getListOfFood()) {
 
                 System.out.println(f.toString());
@@ -71,7 +76,6 @@ public class MainMenuViewController implements Initializable {
 
         }
     }
-
 
     private boolean validateFields() {
         if (foodField.getText().isEmpty() | caloriesField.getText().isEmpty()) {
@@ -85,22 +89,10 @@ public class MainMenuViewController implements Initializable {
         }
         return true;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     void setUp(AppController app) {
        this.app = app;
+       historyTable.setItems(foods);
    }
 
     public void resetCommand() {
