@@ -38,9 +38,10 @@ public class LoginViewController implements Initializable{
     protected void handleLoginButtonAction() {
         char[] password = passwordField.getText().toCharArray();
         if (requestAuthenticate(usernameField.getText(), password)) {
-            app.showMainMenu();
+            app.showMainMenu(usernameField.getText());
+        } else {
+            System.out.println("Invalid account info!");
         }
-        System.out.println("handle login pressed");
     }
     @FXML
     protected void handleSignUpButtonAction() {

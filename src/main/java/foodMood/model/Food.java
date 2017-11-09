@@ -5,12 +5,17 @@ public class Food {
     private int ID;
     private String foodName;
     private int calories;
+    private MoodList moodsForThisFood;
 
     /**
      * Default constructor for the Food model class
      */
     public Food() {
-
+        moodsForThisFood = new MoodList();
+    }
+    
+    public Food(MoodList moods){
+        moodsForThisFood = moods;
     }
 
     /**
@@ -23,6 +28,10 @@ public class Food {
         this.ID = ID;
         this.foodName = foodName;
         this.calories = calories;
+    }
+    
+    public MoodList getMoodList() {
+        return moodsForThisFood;
     }
     
     

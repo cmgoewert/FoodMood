@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import foodMood.control.Serialize;
 import foodMood.control.AppController;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -16,6 +16,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            Serialize ser = new Serialize();
+            ser.read();
             AppController app = new AppController(stage);
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

@@ -47,7 +47,7 @@ public class UserList {
         for (int i = 0; i < 100; i++) {
             String username = ("TestUser" + i);
             char[] password = {'t', 'e', 's', 't'};
-            User newUser = new User(username, password, "Tester");
+            User newUser = new User(username, password, "Tester", new FoodList());
             theUsers.add(newUser);
         }
         System.out.println("made new users");

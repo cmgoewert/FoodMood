@@ -13,11 +13,13 @@ public class User {
     private String username;
     private char[] password;
     private String name;
+    private FoodList theFoodList;
     
-    public User (String username, char[] password, String name){
+    public User (String username, char[] password, String name, FoodList foodList){
         this.username = username;
         this.password = password;
         this.name = name;
+        this.theFoodList = foodList;
     }
 
     /**
@@ -40,5 +42,11 @@ public class User {
     public String getName() {
         return name;
     }
+    
+    public FoodList getFoodList () {
+        return theFoodList;
+    }
+    
+    
     
 }

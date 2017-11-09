@@ -26,6 +26,7 @@ public class AppController {
     LoginViewController loginControl;
     SignUpViewController signUpControl;
     MainMenuViewController mainControl;
+    String currUser;
 
     public AppController(Stage stage) throws IOException {
         ser = new Serialize();
@@ -68,13 +69,18 @@ public class AppController {
 //    public final void hideSignUp(){
 //
 //    }
-    public final void showMainMenu() {
+    public final void showMainMenu(String username) {
         try {
+            
+            currUser = username;
             loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/MainMenuView.fxml"));
             stage.show();
             root = loader.load();
+            
+           //mainControl = new MainMenuViewController(this);
             mainControl = (MainMenuViewController) loader.getController();
-            mainControl.setUp(this);
+             mainControl.setUp(this);
+             mainControl.setUpFoods();
             Scene scene = new Scene(root);
             //String css = AppController.class.getResource("foodMenu.css").toExternalForm();
             // scene.getStylesheets().add(css);
@@ -90,5 +96,9 @@ public class AppController {
 
     public Serialize getSer() {
         return ser;
+    }
+    
+    public String getCurrUser () {
+        return currUser;
     }
 }

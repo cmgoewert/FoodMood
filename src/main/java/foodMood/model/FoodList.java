@@ -6,13 +6,17 @@ import java.util.ArrayList;
 
 public class FoodList {
     
-    private ArrayList<Food> listOfFood = new ArrayList();
+    private ArrayList<Food> listOfFood;
     
     /**
      * Default constructor for the FoodList model class
      */
     public FoodList(){
-        
+        listOfFood = new ArrayList<>();
+    }
+    
+    public FoodList(ArrayList<Food> food){
+        listOfFood = food;
     }
     /**
      * This method adds food item to the @param listOfFood
@@ -20,6 +24,16 @@ public class FoodList {
      */
     public void addFood(Food newFood) {
         getListOfFood().add(newFood);
+    }
+    
+    public Food findFood(int id){
+        for(int i = 0; i < listOfFood.size(); i++){
+            if(id == listOfFood.get(i).getID()){
+                return listOfFood.get(i);
+            }
+        }
+        
+        return null;
     }
      /**
      * This method prints food items in the @param listOfFood

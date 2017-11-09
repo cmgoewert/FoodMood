@@ -7,7 +7,9 @@ package foodMood.control;
 
 import foodMood.model.AppData;
 import foodMood.model.Food;
+import foodMood.model.FoodList;
 import foodMood.model.Mood;
+import foodMood.model.UserList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -17,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,19 +44,40 @@ public class MainMenuViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         foodColumn.setCellValueFactory(new PropertyValueFactory("foodName"));
-        foods = FXCollections.observableArrayList(data.getFoodList().getListOfFood());
+        
+        
     }
+    
+    public void setUpFoods(){
+         System.out.println(app);
+        System.out.println(data.getUserList().getCurrUser(app.currUser).getName() + " here is the currUser");
+        foods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood());
+        
+        historyTable.refresh();
+        
+    }
+    
+   
 
     @FXML
     protected void handleEnterButtonAction() {
         if (!moodField.getText().isEmpty()) {
             Mood newMood = new Mood(1, moodField.getText());
-            data.getMoodList().addMood(newMood);
+            //THIS REALLY NEEDS TO BE FIXED, YOU WILL NEVER ENTER A MOOD WITHOUT AN ASSOCIATED FOOD!
+            Food food = new Food(99,"dummy",999);
+            FoodList foodList= data.getUserList().getCurrUser(app.currUser).getFoodList();
+            Food foundFood = foodList.findFood(food.getID());
+            if(foundFood != null){
+                foundFood.getMoodList().addMood(newMood);
+            } else {
+                food.getMoodList().addMood(newMood);
+                foodList.addFood(food);
+            }
             app.getSer().write();
         }
-        for (Mood m : data.getMoodList().getListOfMoods()) {
-            System.out.println(m.toString());
-        }
+//        for (Mood m : data.getMoodList().getListOfMoods()) {
+//            System.out.println(m.toString());
+//        }
     }
 
     @FXML
@@ -61,17 +85,25 @@ public class MainMenuViewController implements Initializable {
         if (validateFields()) {
             int cal = Integer.parseInt(caloriesField.getText());
             Food newFood = new Food(1, foodField.getText(), cal);
-            data.getFoodList().addFood(newFood);
-            app.getSer().write();
+            //data.getFoodList().addFood(newFood);
             foods.add(newFood);
+            UserList theList = data.getUserList();
+            theList.getCurrUser(app.currUser).getFoodList().addFood(newFood);
+            data.setUserList(theList);
+            System.out.println(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood().toString());
+            app.getSer().write();
+            
+            System.out.println(foods.toString() + " here is foods?");
             historyTable.refresh();
+            historyTable.setItems(foods);
             foodField.clear();
             caloriesField.clear();
-            for (Food f : data.getFoodList().getListOfFood()) {
-
-                System.out.println(f.toString());
-            }
-
+            
+            
+//            for (Food f : data.getFoodList().getListOfFood()) {
+//
+//                System.out.println(f.toString());
+//            }
 
         }
     }

@@ -24,7 +24,7 @@ public class Serialize {
     private AppData data = AppData.getInstance();
     
     public Serialize(){
-        read();
+        write();
         if (data.isEmpty()) {
             System.out.println("No File");
             data.getUserList().buildTestUserList();
@@ -37,18 +37,11 @@ public class Serialize {
 
     public void write() {
         String userOutput = gson.toJson(data.getUserList());
-        String moodOutput = gson.toJson(data.getMoodList());
-        String foodOutput = gson.toJson(data.getFoodList());
         try {
             PrintWriter pw = new PrintWriter(new File("users.json"));
             pw.write(userOutput);
             pw.close();
-            pw = new PrintWriter(new File("moods.json"));
-            pw.write(moodOutput);
-            pw.close();
-            pw = new PrintWriter(new File("foods.json"));
-            pw.write(foodOutput);
-            pw.close();
+            System.out.println("wrote successfully?");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,8 +50,6 @@ public class Serialize {
     
     public void read(){
         UserList tempUserList;
-        MoodList tempMoodList;
-        FoodList tempFoodList;
         String input = "";
         String thisLine = "";
         try{
@@ -70,22 +61,7 @@ public class Serialize {
             tempUserList = gson.fromJson(input, UserList.class);
             input = "";
             
-            in = new BufferedReader(new FileReader("moods.json"));
-            while((thisLine = in.readLine()) != null){
-                input = input.concat(thisLine);
-            }
-            tempMoodList = gson.fromJson(input, MoodList.class);
-            input = "";
-            
-            in = new BufferedReader(new FileReader("foods.json"));
-            while((thisLine = in.readLine()) != null){
-                input = input.concat(thisLine);
-            }
-            tempFoodList = gson.fromJson(input, FoodList.class);
-            
             data.setUserList(tempUserList);
-            data.setMoodList(tempMoodList);
-            data.setFoodList(tempFoodList);
         }
         catch(Exception e){
             e.printStackTrace();
