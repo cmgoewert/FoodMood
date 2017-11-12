@@ -21,10 +21,11 @@ import java.io.PrintWriter;
 public class Serialize {
     
     Gson gson = new Gson();
-    private AppData data = AppData.getInstance();
+    private AppData data;
     
     public Serialize(){
-        write();
+        data = AppData.getInstance();
+        read();
         if (data.isEmpty()) {
             System.out.println("No File");
             data.getUserList().buildTestUserList();
@@ -32,7 +33,7 @@ public class Serialize {
         } else {
             System.out.println("File Found");
         }
-        read();
+
     }
 
     public void write() {

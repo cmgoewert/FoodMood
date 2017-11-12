@@ -56,10 +56,10 @@ public class MainMenuViewController implements Initializable {
     }
     
     public void setUpFoods(){
-         System.out.println(app);
         System.out.println(data.getUserList().getCurrUser(app.currUser).getName() + " here is the currUser");
         foods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood());
-        
+        System.out.println(foods.toString());
+        historyTable.setItems(foods);
         historyTable.refresh();
         
     }
