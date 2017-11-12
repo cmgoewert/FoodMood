@@ -16,8 +16,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Serialize ser = new Serialize();
-            ser.read();
+
             AppController app = new AppController(stage);
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
