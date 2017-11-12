@@ -9,6 +9,7 @@ import foodMood.model.AppData;
 import foodMood.model.Food;
 import foodMood.model.FoodList;
 import foodMood.model.Mood;
+import foodMood.model.MoodList;
 import foodMood.model.UserList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class MainMenuViewController implements Initializable {
     AppController app;
     AppData data = AppData.getInstance();
     ObservableList<Food> foods;
+    ObservableList<Mood> moods;
     @FXML
     private TextField moodField;
     @FXML
@@ -40,6 +43,10 @@ public class MainMenuViewController implements Initializable {
     private TableView historyTable;
     @FXML
     private TableColumn foodColumn;
+    @FXML
+    private ChoiceBox moodDropDown;
+    @FXML
+    private TableColumn colMood;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,18 +69,23 @@ public class MainMenuViewController implements Initializable {
     @FXML
     protected void handleEnterButtonAction() {
         if (!moodField.getText().isEmpty()) {
-            Mood newMood = new Mood(1, moodField.getText());
+            /*Mood newMood = new Mood(1, moodField.getText());
             //THIS REALLY NEEDS TO BE FIXED, YOU WILL NEVER ENTER A MOOD WITHOUT AN ASSOCIATED FOOD!
+            //Disagree, you would enter a mood to be used with a food later or else that's a really 
+            //major change and we're short a use case.
             Food food = new Food(99,"dummy",999);
             FoodList foodList= data.getUserList().getCurrUser(app.currUser).getFoodList();
+
             Food foundFood = foodList.findFood(food.getID());
             if(foundFood != null){
                 foundFood.getMoodList().addMood(newMood);
             } else {
                 food.getMoodList().addMood(newMood);
                 foodList.addFood(food);
-            }
+            }*/
             app.getSer().write();
+            int x = moods.size();
+            moods.add(new Mood(x, moodField.getText()));
         }
 //        for (Mood m : data.getMoodList().getListOfMoods()) {
 //            System.out.println(m.toString());
@@ -124,6 +136,8 @@ public class MainMenuViewController implements Initializable {
     void setUp(AppController app) {
        this.app = app;
        historyTable.setItems(foods);
+       moods= colMood.getColumns();
+       moodDropDown.setItems(moods);
    }
 
     public void resetCommand() {
