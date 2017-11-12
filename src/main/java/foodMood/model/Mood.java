@@ -52,7 +52,7 @@ public class Mood {
     
     @Override
     public String toString() {
-        return "Mood Number: " + this.moodNum + " Mood: " + this.moodName;
+        return this.moodName;
     }
 
 }

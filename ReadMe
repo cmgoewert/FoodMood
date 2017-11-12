@@ -11,6 +11,7 @@ Current Use Case: Add Moods
 Users are able to login with username "TestUser0" and password "test". From there the user can navigate to
 the Mood Menu tab where they will have the option to enter a new mood name into a text box which is saved to
 the data repository. Saving function can be observed in the terminal output on entry and entry of subsequent moods.
+	-Fixes to the Add Mood functionality in the wake of code cleanup have been added. Additionally the drop down menu allowing for mood selection on food entry was updated to display available mood options. -Mranth
 
 Design Pattern Navigation tabbed Panel has Been added by Tim
 Command design pattern also added with a reset command also added by Tim

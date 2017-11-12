@@ -7,9 +7,7 @@ package foodMood.control;
 
 import foodMood.model.AppData;
 import foodMood.model.Food;
-import foodMood.model.FoodList;
 import foodMood.model.Mood;
-import foodMood.model.MoodList;
 import foodMood.model.UserList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,8 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ChoiceBox;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -136,7 +134,14 @@ public class MainMenuViewController implements Initializable {
     void setUp(AppController app) {
        this.app = app;
        historyTable.setItems(foods);
-       moods= colMood.getColumns();
+       moods = FXCollections.observableArrayList();
+       int x = 0;
+       while(colMood.getCellObservableValue(x) != null)
+       {
+           moods.add((Mood)colMood.getCellData(x));
+           x++;
+       }
+
        moodDropDown.setItems(moods);
    }
 
