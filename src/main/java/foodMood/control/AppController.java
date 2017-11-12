@@ -42,70 +42,51 @@ public class AppController {
     }
 
     public final void showLogin() {
-        try {
-            loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/LoginView.fxml"));
-            root = loader.load();
-            loginControl = (LoginViewController) loader.getController();
-            loginControl.setUp(this);
-            Scene scene = new Scene(root);
-            stage.setTitle("Login");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loader = createStage("fxml/LoginView.fxml", "Login");
+        loginControl = (LoginViewController) loader.getController();
+        loginControl.setUp(this);
     }
 
     public final void showSignUp() {
-        try {
-            loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/SignUpView.fxml"));
-            root = loader.load();
-            signUpControl = (SignUpViewController) loader.getController();
-            signUpControl.setUp(this);
-            Scene scene = new Scene(root);
-            stage.setTitle("Sign Up");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loader = createStage("fxml/SignUpView.fxml", "Sign Up");
+        signUpControl = (SignUpViewController) loader.getController();
+        signUpControl.setUp(this);
     }
 
 //    public final void hideSignUp(){
 //
 //    }
+    
     public final void showMainMenu(String username) {
+        currUser = username;
+        loader = createStage("fxml/MainMenuView.fxml", "Main Menu");
+        mainControl = (MainMenuViewController) loader.getController();
+        mainControl.setUp(this);
+        mainControl.setUpFoods();
+        //String css = AppController.class.getResource("foodMenu.css").toExternalForm();
+        // scene.getStylesheets().add(css);
+    }
+    
+    private FXMLLoader createStage(String fxml, String title) {
         try {
-            
-            currUser = username;
-            loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/MainMenuView.fxml"));
-            stage.show();
+            loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml));
             root = loader.load();
-            
-           //mainControl = new MainMenuViewController(this);
-            mainControl = (MainMenuViewController) loader.getController();
-             mainControl.setUp(this);
-             mainControl.setUpFoods();
             Scene scene = new Scene(root);
-            //String css = AppController.class.getResource("foodMenu.css").toExternalForm();
-            // scene.getStylesheets().add(css);
-            stage.setTitle("Main Menu");
+            stage.setTitle(title);
             stage.setScene(scene);
-
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AppController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return loader;
     }
 
     public Serialize getSer() {
         return ser;
     }
-    
-    public String getCurrUser () {
+
+    public String getCurrUser() {
         return currUser;
     }
 }
