@@ -137,7 +137,7 @@ public class MainMenuViewController implements Initializable {
        this.app = app;
        historyTable.setItems(foods);
        moods= colMood.getColumns();
-       moodDropDown.setItems(moods);
+       //moodDropDown.setItems(moods);
    }
 
     public void resetCommand() {
