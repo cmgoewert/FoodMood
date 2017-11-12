@@ -5,12 +5,16 @@
  */
 package foodMood.control;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -31,6 +35,9 @@ public class AppController {
     public AppController(Stage stage) throws IOException {
         ser = new Serialize();
         this.stage = stage;
+        Image img = new Image("file:foodmoodicon.png");
+        stage.getIcons().add(img);
+
         showLogin();
     }
 

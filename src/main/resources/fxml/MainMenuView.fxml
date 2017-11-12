@@ -12,52 +12,53 @@
 <?import javafx.scene.layout.Pane?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodMood.control.MainMenuViewController">
-   <children>
-      <TabPane layoutX="21.0" layoutY="14.0" prefHeight="378.0" prefWidth="558.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Mood Menu">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="moodField" layoutX="185.0" layoutY="64.0" />
-                        <Button layoutX="243.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleEnterButtonAction" text="Enter" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Food Menu">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="519.0" stylesheets="">
-                     <children>
-                        <Button layoutX="251.0" layoutY="181.0" mnemonicParsing="false" onAction="#foodEnterButtonAction" text="Enter" />
-                        <ChoiceBox fx:id="moodDropDown" layoutX="202.0" layoutY="136.0" prefWidth="150.0" />
-                        <TextField fx:id="foodField" layoutX="193.0" layoutY="28.0" />
-                        <Label fx:id="foodTxt" layoutX="140.0" layoutY="33.0" text="Food" />
-                        <TextField fx:id="caloriesField" layoutX="193.0" layoutY="69.0" prefHeight="27.0" prefWidth="89.0" />
-                        <Label fx:id="caloriesTxt" layoutX="131.0" layoutY="74.0" text="Calories" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="History">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <AnchorPane layoutX="14.0" layoutY="32.0" prefHeight="267.0" prefWidth="537.0">
-                           <children>
-                              <TableView fx:id="historyTable" layoutX="14.0" layoutY="14.0" prefHeight="243.0" prefWidth="519.0">
-                                <columns>
-                                  <TableColumn fx:id="foodColumn" prefWidth="162.0" text="Food Name" />
-                                  <TableColumn fx:id="colMood" prefWidth="107.0" text="Mood" />
-                                </columns>
-                              </TableView>
-                           </children>
+    <children>
+        <TabPane layoutX="21.0" layoutY="14.0" prefHeight="378.0" prefWidth="558.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Mood Menu">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="moodField" layoutX="185.0" layoutY="64.0" />
+                                <Button layoutX="243.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleEnterButtonAction" text="Enter" />
+                            </children>
                         </AnchorPane>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+                    </content>
+                </Tab>
+                <Tab text="Food Menu">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="519.0" stylesheets="">
+                            <children>
+                                <Button layoutX="251.0" layoutY="181.0" mnemonicParsing="false" onAction="#foodEnterButtonAction" text="Enter" />
+                                <ChoiceBox layoutX="202.0" layoutY="136.0" prefWidth="150.0" />
+                                <TextField fx:id="foodField" layoutX="193.0" layoutY="28.0" />
+                                <Label fx:id="foodTxt" layoutX="140.0" layoutY="33.0" text="Food" />
+                                <TextField fx:id="caloriesField" layoutX="193.0" layoutY="69.0" prefHeight="27.0" prefWidth="89.0" />
+                                <Label fx:id="caloriesTxt" layoutX="131.0" layoutY="74.0" text="Calories" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="History">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane layoutX="14.0" layoutY="32.0" prefHeight="267.0" prefWidth="537.0">
+                                    <children>
+                                        <TableView fx:id="historyTable" layoutX="14.0" layoutY="14.0" prefHeight="243.0" prefWidth="519.0">
+                                            <columns>
+                                                <TableColumn fx:id="foodColumn" prefWidth="162.0" text="Food Type" />
+                                                <TableColumn fx:id="colMood" prefWidth="107.0" text="Associated Food" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </Pane>
+
