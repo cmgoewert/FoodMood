@@ -6,6 +6,8 @@ access them.  The AppData class now contains a UserList, which can be easily ser
 every food item in the foodList has a MoodList with the associated moods that have been entered with that food.  Therefore, if
 a new food is added, first it will check if it is a duplicate, and if it is, it will add another mood to that foods moodlist.
 
+Login feedback refactor added by Chandler
+
 -------------------------
 Current Use Case: Add Moods
 Users are able to login with username "TestUser0" and password "test". From there the user can navigate to
