@@ -62,13 +62,6 @@ public class MainMenuViewController implements Initializable {
         historyTable.setItems(foods);
         historyTable.refresh();
         
-        for (Food food : foods) {
-           for (Mood mood : food.getMoodList().getListOfMoods()) {
-               System.out.println(mood.toString());
-               moods.add(mood);
-           }
-       }
-       moodDropDown.setItems(moods);
     }
     
    
@@ -144,12 +137,12 @@ public class MainMenuViewController implements Initializable {
        
        int x = 0;
        
-       /*while(colMood.getCellObservableValue(x) != null)
+       while(colMood.getCellObservableValue(x) != null)
        {
            moods.add((Mood)colMood.getCellData(x));
            x++;
        }
-       moodDropDown.setItems(moods);*/
+       moodDropDown.setItems(moods);
    }
 
     public void resetCommand() {
