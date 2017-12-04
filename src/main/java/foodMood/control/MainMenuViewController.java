@@ -136,7 +136,7 @@ public class MainMenuViewController implements Initializable {
        this.app = app;
        
        int x = 0;
-       
+       moods = FXCollections.observableArrayList();
        while(colMood.getCellObservableValue(x) != null)
        {
            moods.add((Mood)colMood.getCellData(x));
