@@ -50,11 +50,12 @@
                                             <columns>
                                                 <TableColumn fx:id="foodColumn" prefWidth="182.0" text="Food Type" />
                                                 <TableColumn fx:id="colMood" prefWidth="185.0" text="Associated Mood" />
-                                    <TableColumn fx:id="caloriesColumn" minWidth="0.0" prefWidth="151.0" text="Calories" />
+                                                <TableColumn fx:id="caloriesColumn" minWidth="0.0" prefWidth="151.0" text="Calories" />
                                             </columns>
                                         </TableView>
                                     </children>
                                 </AnchorPane>
+                        <Button onAction="#handleDataButtonAction" fx:id="dataButton" layoutX="229.0" layoutY="310.0" mnemonicParsing="false" text="View Data Charts" />
                             </children>
                         </AnchorPane>
                     </content>

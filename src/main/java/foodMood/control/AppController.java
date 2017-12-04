@@ -30,6 +30,7 @@ public class AppController {
     LoginViewController loginControl;
     SignUpViewController signUpControl;
     MainMenuViewController mainControl;
+    DataViewController dataControl;
     String currUser;
 
     public AppController(Stage stage) throws IOException {
@@ -67,6 +68,12 @@ public class AppController {
         // scene.getStylesheets().add(css);
     }
     
+    public final void showDataView() {
+        loader = createStage("fxml/DataView.fxml", "Data View");
+        dataControl = (DataViewController) loader.getController();
+        dataControl.setUp(this);
+    }
+    
     private FXMLLoader createStage(String fxml, String title) {
         try {
             loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml));
@@ -81,6 +88,7 @@ public class AppController {
         }
         return loader;
     }
+    
 
     public Serialize getSer() {
         return ser;
