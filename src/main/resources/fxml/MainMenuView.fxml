@@ -47,8 +47,9 @@
                                     <children>
                                         <TableView fx:id="historyTable" layoutX="14.0" layoutY="14.0" prefHeight="243.0" prefWidth="519.0">
                                             <columns>
-                                                <TableColumn fx:id="foodColumn" prefWidth="162.0" text="Food Type" />
-                                                <TableColumn fx:id="colMood" prefWidth="107.0" text="Associated Food" />
+                                                <TableColumn fx:id="foodColumn" prefWidth="182.0" text="Food Type" />
+                                                <TableColumn fx:id="colMood" prefWidth="185.0" text="Associated Mood" />
+                                    <TableColumn fx:id="caloriesColumn" minWidth="0.0" prefWidth="151.0" text="Calories" />
                                             </columns>
                                         </TableView>
                                     </children>
@@ -61,4 +62,3 @@
         </TabPane>
     </children>
 </Pane>
-

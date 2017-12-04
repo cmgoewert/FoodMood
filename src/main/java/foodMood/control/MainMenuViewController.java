@@ -44,21 +44,31 @@ public class MainMenuViewController implements Initializable {
     private ChoiceBox moodDropDown;
     @FXML
     private TableColumn colMood;
+    @FXML
+    private TableColumn caloriesColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         foodColumn.setCellValueFactory(new PropertyValueFactory("foodName"));
-        
-        
+        colMood.setCellValueFactory(new PropertyValueFactory("moodsForThisFood"));
+        caloriesColumn.setCellValueFactory((new PropertyValueFactory("calories")));
     }
     
     public void setUpFoods(){
         System.out.println(data.getUserList().getCurrUser(app.currUser).getName() + " here is the currUser");
         foods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood());
+        moods = FXCollections.observableArrayList();
         System.out.println(foods.toString());
         historyTable.setItems(foods);
         historyTable.refresh();
         
+        for (Food food : foods) {
+           for (Mood mood : food.getMoodList().getListOfMoods()) {
+               System.out.println(mood.toString());
+               moods.add(mood);
+           }
+       }
+       moodDropDown.setItems(moods);
     }
     
    
@@ -92,9 +102,9 @@ public class MainMenuViewController implements Initializable {
     @FXML
     protected void foodEnterButtonAction() {
         if (validateFields()) {
+            int index = foods.size();
             int cal = Integer.parseInt(caloriesField.getText());
-            Food newFood = new Food(1, foodField.getText(), cal);
-            //data.getFoodList().addFood(newFood);
+            Food newFood = new Food(index, foodField.getText(), cal);
             foods.add(newFood);
             UserList theList = data.getUserList();
             theList.getCurrUser(app.currUser).getFoodList().addFood(newFood);
@@ -106,8 +116,7 @@ public class MainMenuViewController implements Initializable {
             historyTable.refresh();
             historyTable.setItems(foods);
             foodField.clear();
-            caloriesField.clear();
-            
+            caloriesField.clear();            
             
 //            for (Food f : data.getFoodList().getListOfFood()) {
 //
@@ -132,16 +141,15 @@ public class MainMenuViewController implements Initializable {
     
     void setUp(AppController app) {
        this.app = app;
-       historyTable.setItems(foods);
-       moods = FXCollections.observableArrayList();
+       
        int x = 0;
-       while(colMood.getCellObservableValue(x) != null)
+       
+       /*while(colMood.getCellObservableValue(x) != null)
        {
            moods.add((Mood)colMood.getCellData(x));
            x++;
        }
-
-       moodDropDown.setItems(moods);
+       moodDropDown.setItems(moods);*/
    }
 
     public void resetCommand() {
