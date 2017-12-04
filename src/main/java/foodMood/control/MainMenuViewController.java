@@ -132,7 +132,12 @@ public class MainMenuViewController implements Initializable {
         return true;
     }
     
+    @FXML 
+    protected void handleDataButtonAction() {
+        app.showDataView();
+    }
     void setUp(AppController app) {
+       moods = FXCollections.observableArrayList();
        this.app = app;
        
        int x = 0;
