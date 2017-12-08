@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -30,6 +31,7 @@ public class AppController {
     LoginViewController loginControl;
     SignUpViewController signUpControl;
     MainMenuViewController mainControl;
+    DataViewController dataControl;
     String currUser;
 
     public AppController(Stage stage) throws IOException {
@@ -67,6 +69,16 @@ public class AppController {
         // scene.getStylesheets().add(css);
     }
     
+    public final void showDataView() {
+        loader = createStage("fxml/DataView.fxml", "Data View");
+        dataControl = (DataViewController) loader.getController();
+        Stage dataStage = new Stage();
+        Scene scene = new Scene(new Group());
+        ((Group) scene.getRoot()).getChildren().add(dataControl.setUp(this));
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     private FXMLLoader createStage(String fxml, String title) {
         try {
             loader = new FXMLLoader(getClass().getClassLoader().getResource(fxml));
@@ -81,6 +93,7 @@ public class AppController {
         }
         return loader;
     }
+    
 
     public Serialize getSer() {
         return ser;
