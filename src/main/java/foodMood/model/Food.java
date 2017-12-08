@@ -24,14 +24,16 @@ public class Food {
      * @param foodName is the name of the food item as a String
      * @param calories is the calories of food item
      */
-    public Food(int ID, String foodName, int calories, String mood){
+    public Food(int ID, String foodName, int calories, String moodForThisFood){
         this.ID = ID;
         this.foodName = foodName;
         this.calories = calories;
-        this.moodForThisFood = mood;
+        this.moodForThisFood = moodForThisFood;
+
+
     }
     
-    public String getMoodForFood() {
+    public String getMoodForThisFood() {
         return moodForThisFood;
     }
     
@@ -81,7 +83,7 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food Number: " + " " + this.ID + " " +  "Food Name: " + " " + this.foodName + " " + "Calories" + " " + this.calories + "Mood Name: " + " " + this.getMoodForFood();
+        return "Food Number: " + " " + this.ID + " " +  "Food Name: " + " " + this.foodName + " " + "Calories" + " " + this.calories + "Mood Name: " + " " + this.moodForThisFood;
     }
     
             

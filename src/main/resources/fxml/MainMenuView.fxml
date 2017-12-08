@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodMood.control.MainMenuViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodMood.control.MainMenuViewController">
     <children>
         <TabPane layoutX="21.0" layoutY="14.0" prefHeight="378.0" prefWidth="558.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -35,6 +35,7 @@
                                 <Label fx:id="foodTxt" layoutX="140.0" layoutY="33.0" text="Food" />
                                 <TextField fx:id="caloriesField" layoutX="193.0" layoutY="69.0" prefHeight="27.0" prefWidth="89.0" />
                                 <Label fx:id="caloriesTxt" layoutX="131.0" layoutY="74.0" text="Calories" />
+                        <Label text="Associated Mood" />
                             </children>
                         </AnchorPane>
                     </content>

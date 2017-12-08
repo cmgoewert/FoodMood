@@ -56,6 +56,7 @@ public class MainMenuViewController implements Initializable {
         System.out.println(data.getUserList().getCurrUser(app.currUser).getName() + " here is the currUser");
         foods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood());
         moods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getMoodList().getListOfMoods());
+        System.out.println();
         moodComboBox.setItems(moods);
         moodComboBox.setEditable(true);
         System.out.println(foods.toString());
@@ -118,8 +119,10 @@ public class MainMenuViewController implements Initializable {
             System.out.println("Verify Mood Entry: " + enteredMood.toString());
             Food newFood = new Food(index, foodField.getText(), cal, enteredMood.getMoodName());
             foods.add(newFood);
+            moods.add(enteredMood);
             UserList theList = data.getUserList();
             theList.getCurrUser(app.currUser).getFoodList().addFood(newFood);
+            theList.getCurrUser(app.currUser).getMoodList().addMood(enteredMood);
             data.setUserList(theList);
             System.out.println(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood().toString());
             app.getSer().write();
@@ -127,6 +130,7 @@ public class MainMenuViewController implements Initializable {
             System.out.println(foods.toString() + " here is foods?");
             historyTable.refresh();
             historyTable.setItems(foods);
+            moodComboBox.setItems(moods);
             foodField.clear();
             caloriesField.clear();            
             
