@@ -23,7 +23,8 @@ public class DataViewController implements Initializable {
     @FXML
     PieChart chart;
     @FXML
-    ObservableList<Food> foods;
+    ArrayList<Food> foods;
+    ArrayList<String> moods;
     ObservableList<PieChart.Data> pieChartData;
     
     @Override
@@ -31,18 +32,22 @@ public class DataViewController implements Initializable {
     }    
     
     public void setUp(AppController app) {
-        foods = FXCollections.observableArrayList(data.getUserList().
-                getCurrUser(app.currUser).getFoodList().getListOfFood());
+        foods = data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood();
+        moods = new ArrayList();
         for (Food food : foods) {
-            for (Mood mood : food.getMoodList().getListOfMoods()) {
-                
+            if (!moods.contains(food.toString())) {
+                moods.add(food.toString());
             }
         }
+        for (String mood : moods) {
+            System.out.println(mood);
+        }
+        /*
         pieChartData = FXCollections.observableArrayList(
         new PieChart.Data("Test 1", 100),
         new PieChart.Data("Test 2", 200),
         new PieChart.Data("Test 3", 300));
-        chart = new PieChart(pieChartData);
+        chart = new PieChart(pieChartData);*/
     }
     
 }
