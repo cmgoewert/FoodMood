@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -71,7 +72,11 @@ public class AppController {
     public final void showDataView() {
         loader = createStage("fxml/DataView.fxml", "Data View");
         dataControl = (DataViewController) loader.getController();
-        dataControl.setUp(this);
+        Stage dataStage = new Stage();
+        Scene scene = new Scene(new Group());
+        ((Group) scene.getRoot()).getChildren().add(dataControl.setUp(this));
+        stage.setScene(scene);
+        stage.show();
     }
     
     private FXMLLoader createStage(String fxml, String title) {
