@@ -42,6 +42,8 @@ public class MainMenuViewController implements Initializable {
     @FXML
     private TableColumn colMood;
     @FXML
+    private TextField emailField;
+    @FXML
     private TableColumn caloriesColumn;
 
     @Override
@@ -108,6 +110,12 @@ public class MainMenuViewController implements Initializable {
 //        for (Mood m : data.getMoodList().getListOfMoods()) {
 //            System.out.println(m.toString());
 //        }
+    }
+
+    @FXML
+    protected void handleShareButtonAction () {
+        UserList theList = data.getUserList();
+        ExportController.share(emailField.getText(), theList.getCurrUser(app.currUser).getFoodList());
     }
 
     @FXML
