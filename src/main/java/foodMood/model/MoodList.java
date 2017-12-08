@@ -20,7 +20,7 @@ public class MoodList {
      * @param newMood
      */
     public void addMood(Mood newMood) {
-        getListOfMoods().add(newMood);
+        this.getListOfMoods().add(newMood);
     }
      /**
      * This method prints mood items in the @param listOfMoods

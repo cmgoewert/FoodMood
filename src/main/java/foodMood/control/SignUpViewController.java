@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import foodMood.model.AppData;
 import foodMood.model.FoodList;
+import foodMood.model.MoodList;
 import foodMood.model.User;
 import foodMood.model.UserList;
 import javafx.fxml.FXML;
@@ -46,7 +47,7 @@ public class SignUpViewController implements Initializable {
         if(passwordField1.getText().equals(passwordField2.getText())){
             //System.out.println("equals");
             UserList newList = data.getUserList();
-            newList.addUser(new User(usernameField.getText(),passwordField1.getText().toCharArray(),"", new FoodList()));
+            newList.addUser(new User(usernameField.getText(),passwordField1.getText().toCharArray(),"", new FoodList(), new MoodList()));
             app.showLogin();
         }
         else

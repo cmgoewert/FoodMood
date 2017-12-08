@@ -5,17 +5,17 @@ public class Food {
     private int ID;
     private String foodName;
     private int calories;
-    private MoodList moodsForThisFood;
+    private String moodForThisFood;
 
     /**
      * Default constructor for the Food model class
      */
     public Food() {
-        moodsForThisFood = new MoodList();
+        moodForThisFood = new String();
     }
     
-    public Food(MoodList moods){
-        moodsForThisFood = moods;
+    public Food(String mood){
+        moodForThisFood = mood;
     }
 
     /**
@@ -24,14 +24,15 @@ public class Food {
      * @param foodName is the name of the food item as a String
      * @param calories is the calories of food item
      */
-    public Food(int ID, String foodName, int calories){
+    public Food(int ID, String foodName, int calories, String mood){
         this.ID = ID;
         this.foodName = foodName;
         this.calories = calories;
+        this.moodForThisFood = mood;
     }
     
-    public MoodList getMoodList() {
-        return moodsForThisFood;
+    public String getMoodForFood() {
+        return moodForThisFood;
     }
     
     
@@ -80,7 +81,7 @@ public class Food {
 
     @Override
     public String toString() {
-        return "Food Number: " + " " + this.ID + " " +  "Food Name: " + " " + this.foodName + " " + "Calories" + " " + this.calories;
+        return "Food Number: " + " " + this.ID + " " +  "Food Name: " + " " + this.foodName + " " + "Calories" + " " + this.calories + "Mood Name: " + " " + this.getMoodForFood();
     }
     
             

@@ -14,12 +14,20 @@ public class User {
     private char[] password;
     private String name;
     private FoodList theFoodList;
+    private MoodList theMoodList;
     
     public User (String username, char[] password, String name, FoodList foodList){
         this.username = username;
         this.password = password;
         this.name = name;
         this.theFoodList = foodList;
+    }
+    public User (String username, char[] password, String name, FoodList foodList, MoodList moodList){
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.theFoodList = foodList;
+        this.theMoodList = moodList;
     }
 
     /**
@@ -43,8 +51,13 @@ public class User {
         return name;
     }
     
-    public FoodList getFoodList () {
+    public FoodList getFoodList() {
         return theFoodList;
+    }
+    
+    public MoodList getMoodList()
+    {
+        return theMoodList;
     }
     
     

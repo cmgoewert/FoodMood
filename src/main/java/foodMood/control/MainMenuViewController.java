@@ -8,6 +8,7 @@ package foodMood.control;
 import foodMood.model.AppData;
 import foodMood.model.Food;
 import foodMood.model.Mood;
+import foodMood.model.MoodList;
 import foodMood.model.UserList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -50,14 +51,16 @@ public class MainMenuViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         foodColumn.setCellValueFactory(new PropertyValueFactory("foodName"));
-        colMood.setCellValueFactory(new PropertyValueFactory("moodsForThisFood"));
-        caloriesColumn.setCellValueFactory((new PropertyValueFactory("calories")));
+        caloriesColumn.setCellValueFactory(new PropertyValueFactory("calories"));
+        colMood.setCellValueFactory(new PropertyValueFactory("moodForThisFood"));
     }
     
+    //this nolonger functions to strictly set up foods, also sets up the moods tab
     public void setUpFoods(){
         System.out.println(data.getUserList().getCurrUser(app.currUser).getName() + " here is the currUser");
         foods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood());
-        moods = FXCollections.observableArrayList();
+        moods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getMoodList().getListOfMoods());
+        moodDropDown.setItems(moods);
         System.out.println(foods.toString());
         historyTable.setItems(foods);
         historyTable.refresh();
@@ -68,7 +71,15 @@ public class MainMenuViewController implements Initializable {
 
     @FXML
     protected void handleEnterButtonAction() {
-        if (!moodField.getText().isEmpty()) {
+        boolean duplicate = false;
+        for(int x = 0; x < moods.size(); x++)
+        {
+            if(moods.get(x).getMoodName().matches(moodField.getText()))
+            {
+                duplicate = true;
+            }
+        }
+        if (!moodField.getText().isEmpty() && !duplicate) {
             /*Mood newMood = new Mood(1, moodField.getText());
             //THIS REALLY NEEDS TO BE FIXED, YOU WILL NEVER ENTER A MOOD WITHOUT AN ASSOCIATED FOOD!
             //Disagree, you would enter a mood to be used with a food later or else that's a really 
@@ -83,9 +94,18 @@ public class MainMenuViewController implements Initializable {
                 food.getMoodList().addMood(newMood);
                 foodList.addFood(food);
             }*/
-            app.getSer().write();
+            //app.getSer().write();
             int x = moods.size();
-            moods.add(new Mood(x, moodField.getText()));
+            Mood newMood = new Mood(x, moodField.getText());
+            moods.add(newMood);
+            UserList theList = data.getUserList();
+            theList.getCurrUser(app.currUser).getMoodList().addMood(newMood);
+            moodField.clear();
+            app.getSer().write();
+        }
+        else
+        {
+            System.out.println("Cannot save null or duplicate mood");
         }
 //        for (Mood m : data.getMoodList().getListOfMoods()) {
 //            System.out.println(m.toString());
@@ -97,7 +117,9 @@ public class MainMenuViewController implements Initializable {
         if (validateFields()) {
             int index = foods.size();
             int cal = Integer.parseInt(caloriesField.getText());
-            Food newFood = new Food(index, foodField.getText(), cal);
+            Mood enteredMood = (Mood)moodDropDown.getValue();
+            System.out.println("Verify Mood Entry: " + enteredMood.toString());
+            Food newFood = new Food(index, foodField.getText(), cal, enteredMood.getMoodName());
             foods.add(newFood);
             UserList theList = data.getUserList();
             theList.getCurrUser(app.currUser).getFoodList().addFood(newFood);
@@ -134,15 +156,6 @@ public class MainMenuViewController implements Initializable {
     
     void setUp(AppController app) {
        this.app = app;
-       
-       int x = 0;
-       moods = FXCollections.observableArrayList();
-       while(colMood.getCellObservableValue(x) != null)
-       {
-           moods.add((Mood)colMood.getCellData(x));
-           x++;
-       }
-       moodDropDown.setItems(moods);
    }
 
     public void resetCommand() {
