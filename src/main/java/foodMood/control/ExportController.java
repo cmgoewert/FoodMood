@@ -61,13 +61,13 @@ public final class ExportController {
         Session session = Session.getInstance(props,
                 new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("cmgoewert@gmail.com", "Chandler12");
+                        return new PasswordAuthentication("foodmoodbot@gmail.com", "foodandmood");
                     }
                 });
 
         try {
             MimeMessage msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("cmgoewert@gmail.com"));
+            msg.setFrom(new InternetAddress("foodmoodbot@gmail.com"));
             msg.setRecipients(Message.RecipientType.TO, sendTo);
             msg.setSubject("FoodMood data shared with you!");
             msg.setSentDate(new Date());
