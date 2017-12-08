@@ -11,13 +11,9 @@ import foodMood.model.Mood;
 import foodMood.model.MoodList;
 import foodMood.model.UserList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ChoiceBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,7 +38,7 @@ public class MainMenuViewController implements Initializable {
     @FXML
     private TableColumn foodColumn;
     @FXML
-    private ChoiceBox moodDropDown;
+    private ComboBox moodComboBox;
     @FXML
     private TableColumn colMood;
     @FXML
@@ -60,7 +56,8 @@ public class MainMenuViewController implements Initializable {
         System.out.println(data.getUserList().getCurrUser(app.currUser).getName() + " here is the currUser");
         foods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getFoodList().getListOfFood());
         moods = FXCollections.observableArrayList(data.getUserList().getCurrUser(app.currUser).getMoodList().getListOfMoods());
-        moodDropDown.setItems(moods);
+        moodComboBox.setItems(moods);
+        moodComboBox.setEditable(true);
         System.out.println(foods.toString());
         historyTable.setItems(foods);
         historyTable.refresh();
@@ -117,7 +114,7 @@ public class MainMenuViewController implements Initializable {
         if (validateFields()) {
             int index = foods.size();
             int cal = Integer.parseInt(caloriesField.getText());
-            Mood enteredMood = (Mood)moodDropDown.getValue();
+            Mood enteredMood = new Mood(moodComboBox.getValue().toString());
             System.out.println("Verify Mood Entry: " + enteredMood.toString());
             Food newFood = new Food(index, foodField.getText(), cal, enteredMood.getMoodName());
             foods.add(newFood);

@@ -11,6 +11,10 @@ public class Mood {
     public Mood() {
     }
 
+    public Mood(String moodName){
+        this.moodName = moodName;
+    }
+
     /**
      * Constructor that initializes attributes
      * @param moodNum is the id number associated with the users mood
